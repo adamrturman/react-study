@@ -27,9 +27,16 @@ function App() {
         ])
     }
 
+    const style = {
+      backgroundColor: 'red',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
+
 return (
   <div className="App">
-    <button onClick={() => switchNameHandler('Mada')}>Switch Name</button>
+    <button style={style} onClick={() => switchNameHandler('Mada')}>Switch Name</button>
     <Person name={person[0].name} age={person[0].age} job={person[0].job}></Person>
     <Person change={nameChangedHandler} click={switchNameHandler.bind(this, 'Adam!!!')} name={person[1].name} age={person[1].age} job={person[1].job} />
     <Person name={person[2].name} age={person[2].age} job={person[2].job} />
@@ -58,9 +65,16 @@ return (
 //   }
 
 //   render() {
+
+      // const style = {
+      //   backgroundColor: 'red',
+      //   border: '1px solid blue',
+      //   padding: '8px',
+      //   cursor: 'pointer'
+      // }
 //     return (
 //     <div className="App">
-//       <button onClick={this.switchNameHandler}>Switch Name</button>
+//       <button style={style} onClick={this.switchNameHandler}>Switch Name</button>
 //       <Person name={this.state.person[0].name} age={this.state.person[0].age} job={this.state.person[0].job}></Person>
 //       <Person name={this.state.person[1].name} age={this.state.person[1].age} job={this.state.person[1].job} />
 //       <Person name={this.state.person[2].name} age={this.state.person[2].age} job={this.state.person[2].job} />
