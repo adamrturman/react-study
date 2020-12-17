@@ -1,15 +1,17 @@
 import React from 'react'
+import { render } from 'react-dom'
 
 const Person = (props) => {
-    const { name, age, job, children } = props
+    //  Hooks syntax
+    const { name, age, job, click } = props
     return (
         <div>
-            <button>Switch Name</button>
-            <h1>Name: {name}</h1>
+            <h1 onClick={click}>Name: {name}</h1>
             <h2>Age: {age}</h2>
             <h2>Job: {job}</h2>
         </div>
     )
+
 }
 
 export default Person
