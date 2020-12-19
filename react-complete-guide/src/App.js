@@ -10,6 +10,8 @@ function App() {
     {name: "Adam", age:"32", job:"programmer"}, 
     {name:"Eric", age:"30", job:"entrepeneur"}, 
     {name:"Joey", age:"28", job:"marketing director"}])
+  
+  const [showPerson, setShowPerson] = useState(false)  
 
     const switchNameHandler = (newName) => {
       setPerson([
@@ -27,6 +29,12 @@ function App() {
         ])
     }
 
+    const togglePersonHandler = () => {
+        setShowPerson(!showPerson)
+    }
+
+    
+
     const style = {
       backgroundColor: 'red',
       border: '1px solid blue',
@@ -36,10 +44,14 @@ function App() {
 
 return (
   <div className="App">
-    <button style={style} onClick={() => switchNameHandler('Mada')}>Switch Name</button>
-    <Person name={person[0].name} age={person[0].age} job={person[0].job}></Person>
-    <Person change={nameChangedHandler} click={switchNameHandler.bind(this, 'Adam!!!')} name={person[1].name} age={person[1].age} job={person[1].job} />
-    <Person name={person[2].name} age={person[2].age} job={person[2].job} />
+    <button style={style} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button>
+    { showPerson ? 
+      <div>
+        <Person name={person[0].name} age={person[0].age} job={person[0].job}></Person>
+      < Person change={nameChangedHandler} click={switchNameHandler.bind(this, 'Adam!!!')} name={person[1].name} age={person[1].age} job={person[1].job} />
+        <Person name={person[2].name} age={person[2].age} job={person[2].job} />
+      </div> :
+      null }
   </div>
 );
 }
