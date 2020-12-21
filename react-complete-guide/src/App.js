@@ -42,16 +42,22 @@ function App() {
       cursor: 'pointer'
     }
 
-return (
-  <div className="App">
-    <button style={style} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button>
-    { showPerson ? 
+  let persons = null;
+
+  if (showPerson) {
+    persons = (
       <div>
         <Person name={person[0].name} age={person[0].age} job={person[0].job}></Person>
-      < Person change={nameChangedHandler} click={switchNameHandler.bind(this, 'Adam!!!')} name={person[1].name} age={person[1].age} job={person[1].job} />
+        <Person change={nameChangedHandler} click={switchNameHandler.bind(this, 'Adam!!!')} name={person[1].name} age={person[1].age} job={person[1].job} />
         <Person name={person[2].name} age={person[2].age} job={person[2].job} />
-      </div> :
-      null }
+      </div>
+    )
+  }
+
+return (
+  <div className="App">
+    <button style={style} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button> 
+     {persons} 
   </div>
 );
 }
