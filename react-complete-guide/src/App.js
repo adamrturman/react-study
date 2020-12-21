@@ -6,7 +6,7 @@ import { render } from 'react-dom';
 
 //  Function component using hooks
 function App() {
-  const [person, setPerson] = useState([
+  const [people, setPeople] = useState([
     {name: "Adam", age:"32", job:"programmer"}, 
     {name:"Eric", age:"30", job:"entrepeneur"}, 
     {name:"Joey", age:"28", job:"marketing director"}])
@@ -14,7 +14,7 @@ function App() {
   const [showPerson, setShowPerson] = useState(false)  
 
     const switchNameHandler = (newName) => {
-      setPerson([
+      setPeople([
               {name: newName, age:"32", job:"programmer"}, 
               {name:"Cire", age:"30", job:"entrepeneur"}, 
               {name:"Yeoj", age:"28", job:"marketing director"}
@@ -22,7 +22,7 @@ function App() {
     }
 
     const nameChangedHandler = (event) => {
-        setPerson([
+        setPeople([
           {name: "Mada", age:"32", job:"programmer"}, 
           {name: event.target.value, age:"30", job:"entrepeneur"}, 
           {name:"Yeoj", age:"28", job:"marketing director"}
@@ -32,8 +32,6 @@ function App() {
     const togglePersonHandler = () => {
         setShowPerson(!showPerson)
     }
-
-    
 
     const style = {
       backgroundColor: 'red',
@@ -47,9 +45,12 @@ function App() {
   if (showPerson) {
     persons = (
       <div>
-        <Person name={person[0].name} age={person[0].age} job={person[0].job}></Person>
+        {people.map(person => {
+          return <Person name={person.name} age={person.age} />
+        })}
+        {/* <Person name={person[0].name} age={person[0].age} job={person[0].job}></Person>
         <Person change={nameChangedHandler} click={switchNameHandler.bind(this, 'Adam!!!')} name={person[1].name} age={person[1].age} job={person[1].job} />
-        <Person name={person[2].name} age={person[2].age} job={person[2].job} />
+        <Person name={person[2].name} age={person[2].age} job={person[2].job} /> */}
       </div>
     )
   }
