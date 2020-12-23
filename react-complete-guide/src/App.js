@@ -7,19 +7,12 @@ import { render } from 'react-dom';
 //  Function component using hooks
 function App() {
   const [people, setPeople] = useState([
-    {name: "Adam", age:"32", job:"programmer"}, 
-    {name:"Eric", age:"30", job:"entrepeneur"}, 
-    {name:"Joey", age:"28", job:"marketing director"}])
+    { name: "Adam", age:"32", job:"programmer" }, 
+    { name:"Eric", age:"30", job:"entrepeneur" }, 
+    { name:"Joey", age:"28", job:"marketing director" }])
   
   const [showPerson, setShowPerson] = useState(false)  
 
-    const switchNameHandler = (newName) => {
-      setPeople([
-              {name: newName, age:"32", job:"programmer"}, 
-              {name:"Cire", age:"30", job:"entrepeneur"}, 
-              {name:"Yeoj", age:"28", job:"marketing director"}
-            ])
-    }
 
     const nameChangedHandler = (event) => {
         setPeople([
@@ -31,6 +24,15 @@ function App() {
 
     const togglePersonHandler = () => {
         setShowPerson(!showPerson)
+        console.log("type of people", typeof people)
+    }
+
+    const deletePersonHandler = (personIndex) => {
+      const persons = [...people];
+      console.log("type of persons", typeof persons)
+      persons.splice(personIndex, 1);
+      setPeople(persons)
+      console.log("typeof people", typeof people)
     }
 
     const style = {
@@ -45,8 +47,12 @@ function App() {
   if (showPerson) {
     persons = (
       <div>
-        {people.map(person => {
-          return <Person name={person.name} age={person.age} />
+        {people.map((person, index) => {
+          return <Person 
+            name={person.name} 
+            age={person.age}
+            click={() => deletePersonHandler(index)}
+            />
         })}
         {/* <Person name={person[0].name} age={person[0].age} job={person[0].job}></Person>
         <Person change={nameChangedHandler} click={switchNameHandler.bind(this, 'Adam!!!')} name={person[1].name} age={person[1].age} job={person[1].job} />
