@@ -4,13 +4,13 @@ import './Person.css'
 
 const Person = (props) => {
     //  Hooks syntax
-    const { name, age, job, click, change } = props
+    const { name, age, job, click, changed } = props
     return (
         <div className="Person">
             <h1 onClick={click}>Name: {name}</h1>
             <h2>Age: {age}</h2>
             <h2>Job: {job}</h2>
-            <input type="text" onChange={change} value={name}></input>
+            <input type="text" onChange={changed} value={name}></input>
         </div>
     )
 

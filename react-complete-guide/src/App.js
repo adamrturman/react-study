@@ -7,32 +7,50 @@ import { render } from 'react-dom';
 //  Function component using hooks
 function App() {
   const [people, setPeople] = useState([
-    { name: "Adam", age:"32", job:"programmer" }, 
-    { name:"Eric", age:"30", job:"entrepeneur" }, 
-    { name:"Joey", age:"28", job:"marketing director" }])
+    { id: '1', name: "Adam", age:"32", job:"programmer" }, 
+    { id: '2', name:"Eric", age:"30", job:"entrepeneur" }, 
+    { id: '3', name:"Joey", age:"28", job:"marketing director" }])
   
   const [showPerson, setShowPerson] = useState(false)  
 
 
-    const nameChangedHandler = (event) => {
-        setPeople([
-          {name: "Mada", age:"32", job:"programmer"}, 
-          {name: event.target.value, age:"30", job:"entrepeneur"}, 
-          {name:"Yeoj", age:"28", job:"marketing director"}
-        ])
+    const nameChangedHandler = (event, id) => {
+        //  the personIndex is the one whose id matches the id from the event
+        const personIndex = people.findIndex(p => {
+          return p.id === id;
+        });
+
+        //  create a new object and use the spread operator to avoid mutating original
+        const person = {
+          ...people[personIndex]
+        };
+
+        //  the updated name comes from the input event
+        person.name = event.target.value;
+
+        //  make a copy of the array and update it at the targeted index
+        const persons = [...people];
+        persons[personIndex] = person;
+
+        //  set the state to include the updated array
+        setPeople(persons)
+        
+
+        // setPeople([
+        //   {name: "Mada", age:"32", job:"programmer"}, 
+        //   {name: event.target.value, age:"30", job:"entrepeneur"}, 
+        //   {name:"Yeoj", age:"28", job:"marketing director"}
+        // ])
     }
 
     const togglePersonHandler = () => {
         setShowPerson(!showPerson)
-        console.log("type of people", typeof people)
     }
 
     const deletePersonHandler = (personIndex) => {
       const persons = [...people];
-      console.log("type of persons", typeof persons)
       persons.splice(personIndex, 1);
       setPeople(persons)
-      console.log("typeof people", typeof people)
     }
 
     const style = {
@@ -48,10 +66,12 @@ function App() {
     persons = (
       <div>
         {people.map((person, index) => {
-          return <Person 
+          return <Person
+            key={person.id} 
             name={person.name} 
             age={person.age}
             click={() => deletePersonHandler(index)}
+            changed={(event) => nameChangedHandler(event, person.id)}
             />
         })}
         {/* <Person name={person[0].name} age={person[0].age} job={person[0].job}></Person>
