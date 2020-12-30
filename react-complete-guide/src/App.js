@@ -1,5 +1,4 @@
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person'
 import { useState, Component, useEffect } from 'react'
 import { render } from 'react-dom';
@@ -91,13 +90,11 @@ function App() {
   }
 
 return (
-  <StyleRoot>
   <div className="App">
     <button style={style} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button> 
     <p className={classes.join(' ')}>List of people below</p>
      {persons}
   </div>
-  </StyleRoot>
 );
 }
 
@@ -140,4 +137,4 @@ return (
 //   }
 // }
 
-export default Radium(App);
+export default App;
