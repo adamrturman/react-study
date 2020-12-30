@@ -1,8 +1,21 @@
 import './App.css';
+import styled from 'styled-components'
 import Person from './Person/Person'
 import { useState, Component, useEffect } from 'react'
 import { render } from 'react-dom';
 
+
+const StyledButton = styled.button`
+    background-color: green;
+    border: 1px solid blue;
+    padding: 8px;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: lightgreen;
+      color: black;
+      }
+`;
 
 //  Function component using hooks
 function App() {
@@ -46,17 +59,6 @@ function App() {
       setPeople(persons)
     }
 
-    const style = {
-      backgroundColor: 'green',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    }
-
   let persons = null;
 
   if (showPerson) {
@@ -75,10 +77,10 @@ function App() {
       </div>
     )
     //  Dynamic stylng for the button within the conditional
-    style.backgroundColor = 'red';
-    style[':hover']= {
-      backgroundColor: 'salmon'
-    }
+  //   style.backgroundColor = 'red';
+  //   style[':hover']= {
+  //     backgroundColor: 'salmon'
+  //   }
   }
 
   const classes = [];
@@ -89,52 +91,14 @@ function App() {
     classes.push('bold')
   }
 
-return (
-  <div className="App">
-    <button style={style} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button> 
-    <p className={classes.join(' ')}>List of people below</p>
-     {persons}
-  </div>
-);
-}
+  return (
+      <div className="App">
+        <StyledButton onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</StyledButton> 
+        <p className={classes.join(' ')}>List of people below</p>
+        {persons}
+      </div>
+    );
+  }
 
-//  Class component 
-// class App extends Component {
-//   state = {
-//     person:
-//     [
-//       {name: "Adam", age:"32", job:"programmer"}, 
-//       {name:"Eric", age:"30", job:"entrepeneur"}, 
-//       {name:"Joey", age:"28", job:"marketing director"}
-//     ]
-//   }
-
-//   switchNameHandler = () => {
-//     // console.log('was clicked')
-//     this.setState({person: [
-//       {name: "Mada", age:"32", job:"programmer"}, 
-//       {name:"Cire", age:"30", job:"entrepeneur"}, 
-//       {name:"Yeoj", age:"28", job:"marketing director"}
-//     ] })
-//   }
-
-//   render() {
-
-      // const style = {
-      //   backgroundColor: 'red',
-      //   border: '1px solid blue',
-      //   padding: '8px',
-      //   cursor: 'pointer'
-      // }
-//     return (
-//     <div className="App">
-//       <button style={style} onClick={this.switchNameHandler}>Switch Name</button>
-//       <Person name={this.state.person[0].name} age={this.state.person[0].age} job={this.state.person[0].job}></Person>
-//       <Person name={this.state.person[1].name} age={this.state.person[1].age} job={this.state.person[1].job} />
-//       <Person name={this.state.person[2].name} age={this.state.person[2].age} job={this.state.person[2].job} />
-//     </div>
-//   );
-//   }
-// }
 
 export default App;
