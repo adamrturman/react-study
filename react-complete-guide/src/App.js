@@ -1,4 +1,5 @@
 import './App.css';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person'
 import { useState, Component, useEffect } from 'react'
 import { render } from 'react-dom';
@@ -34,13 +35,6 @@ function App() {
 
         //  set the state to include the updated array
         setPeople(persons)
-        
-
-        // setPeople([
-        //   {name: "Mada", age:"32", job:"programmer"}, 
-        //   {name: event.target.value, age:"30", job:"entrepeneur"}, 
-        //   {name:"Yeoj", age:"28", job:"marketing director"}
-        // ])
     }
 
     const togglePersonHandler = () => {
@@ -57,7 +51,11 @@ function App() {
       backgroundColor: 'green',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     }
 
   let persons = null;
@@ -70,17 +68,18 @@ function App() {
             key={person.id} 
             name={person.name} 
             age={person.age}
+            job={person.job}
             click={() => deletePersonHandler(index)}
             changed={(event) => nameChangedHandler(event, person.id)}
             />
         })}
-        {/* <Person name={person[0].name} age={person[0].age} job={person[0].job}></Person>
-        <Person change={nameChangedHandler} click={switchNameHandler.bind(this, 'Adam!!!')} name={person[1].name} age={person[1].age} job={person[1].job} />
-        <Person name={person[2].name} age={person[2].age} job={person[2].job} /> */}
       </div>
     )
     //  Dynamic stylng for the button within the conditional
     style.backgroundColor = 'red';
+    style[':hover']= {
+      backgroundColor: 'salmon'
+    }
   }
 
   const classes = [];
@@ -92,11 +91,13 @@ function App() {
   }
 
 return (
+  <StyleRoot>
   <div className="App">
     <button style={style} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button> 
     <p className={classes.join(' ')}>List of people below</p>
      {persons}
   </div>
+  </StyleRoot>
 );
 }
 
@@ -139,4 +140,4 @@ return (
 //   }
 // }
 
-export default App;
+export default Radium(App);
