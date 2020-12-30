@@ -54,7 +54,7 @@ function App() {
     }
 
     const style = {
-      backgroundColor: 'red',
+      backgroundColor: 'green',
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer'
@@ -79,12 +79,14 @@ function App() {
         <Person name={person[2].name} age={person[2].age} job={person[2].job} /> */}
       </div>
     )
+    //  Dynamic stylng for the button within the conditional
+    style.backgroundColor = 'red';
   }
 
 return (
   <div className="App">
     <button style={style} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button> 
-     {persons} 
+     {persons}
   </div>
 );
 }
