@@ -6,13 +6,13 @@ import { render } from 'react-dom';
 
 
 const StyledButton = styled.button`
-    background-color: green;
+    background-color: ${props => props.alt ? 'red' : 'green'};
     border: 1px solid blue;
     padding: 8px;
     cursor: pointer;
     
     &:hover {
-      background-color: lightgreen;
+      background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
       color: black;
       }
 `;
@@ -93,7 +93,7 @@ function App() {
 
   return (
       <div className="App">
-        <StyledButton onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</StyledButton> 
+        <StyledButton alt={showPerson} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</StyledButton> 
         <p className={classes.join(' ')}>List of people below</p>
         {persons}
       </div>
