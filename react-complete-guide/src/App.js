@@ -83,9 +83,18 @@ function App() {
     style.backgroundColor = 'red';
   }
 
+  const classes = [];
+  if (people.length <= 2) {
+    classes.push('red')
+  }
+  if (people.length <= 1) {
+    classes.push('bold')
+  }
+
 return (
   <div className="App">
     <button style={style} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button> 
+    <p className={classes.join(' ')}>List of people below</p>
      {persons}
   </div>
 );
