@@ -1,21 +1,10 @@
-import './App.css';
-import styled from 'styled-components'
+import styles from  './App.module.css';
+// import styles from  './button.module.css';
 import Person from './Person/Person'
+import LikeButton from './LikeButton'
 import { useState, Component, useEffect } from 'react'
 import { render } from 'react-dom';
 
-
-const StyledButton = styled.button`
-    background-color: ${props => props.alt ? 'red' : 'green'};
-    border: 1px solid blue;
-    padding: 8px;
-    cursor: pointer;
-    
-    &:hover {
-      background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-      color: black;
-      }
-`;
 
 //  Function component using hooks
 function App() {
@@ -85,17 +74,18 @@ function App() {
 
   const classes = [];
   if (people.length <= 2) {
-    classes.push('red')
+    classes.push(styles.red)
   }
   if (people.length <= 1) {
-    classes.push('bold')
+    classes.push(styles.bold)
   }
 
   return (
-      <div className="App">
-        <StyledButton alt={showPerson} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</StyledButton> 
+      <div className={styles.App}>
+        <button className={styles.button} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button> 
         <p className={classes.join(' ')}>List of people below</p>
         {persons}
+        {/* <LikeButton /> */}
       </div>
     );
   }
