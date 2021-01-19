@@ -2,6 +2,7 @@ import styles from  './App.module.css';
 import Person from '../../components/Persons/Person/Person'
 import LikeButton from '../../LikeButton'
 import { useState, Component, useEffect } from 'react'
+import Persons from '../../components/Persons/Person/Persons'
 
 //  Function component using hooks
 function App() {
@@ -51,16 +52,10 @@ function App() {
   if (showPerson) {
     persons = (
       <div>
-        {people.map((person, index) => {
-          return <Person
-            key={person.id} 
-            name={person.name} 
-            age={person.age}
-            job={person.job}
-            click={() => deletePersonHandler(index)}
-            changed={(event) => nameChangedHandler(event, person.id)}
-            />
-        })}
+        <Persons 
+          persons={people} 
+          clicked={deletePersonHandler} 
+          changed={nameChangedHandler} />
       </div>
     )
     //  When we are showing the list, add the 'Red' class to the array of styles
