@@ -49,6 +49,7 @@ function App() {
     }
 
   let persons = null;
+  let btnClass = [styles.button];
 
   if (showPerson) {
     persons = (
@@ -70,6 +71,8 @@ function App() {
   //   style[':hover']= {
   //     backgroundColor: 'salmon'
   //   }
+    btnClass.push(styles.Red)
+
   }
 
   const classes = [];
@@ -82,7 +85,7 @@ function App() {
 
   return (
       <div className={styles.App}>
-        <button className={styles.button} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button> 
+        <button className={btnClass.join(' ')} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button> 
         <p className={classes.join(' ')}>List of people below</p>
         {persons}
         {/* <LikeButton /> */}

@@ -23,6 +23,13 @@
         color: black;
         }
   
+
+.button.Red {
+        background-color: red;
+    }
+    .button.Red:hover {
+        background-color: salmon;
+    }
   .red {
     color: red;
   }
