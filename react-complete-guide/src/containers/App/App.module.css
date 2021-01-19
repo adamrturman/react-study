@@ -7,32 +7,9 @@
     pointer-events: none;
   }
   
-  .bold {
-    font-weight: bold;
-  }
-  
-  .button {
-      background-color: green;
-      border: 1px solid blue;
-      padding: 8px;
-      cursor: pointer;
-  }
-      
-  .button:hover {
-        background-color: lightgreen;
-        color: black;
-        }
+
   
 
-.button.Red {
-        background-color: red;
-    }
-    .button.Red:hover {
-        background-color: salmon;
-    }
-  .red {
-    color: red;
-  }
   
   @media (prefers-reduced-motion: no-preference) {
     .App-logo {

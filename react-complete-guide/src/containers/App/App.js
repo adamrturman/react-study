@@ -3,6 +3,7 @@ import Person from '../../components/Persons/Person/Person'
 import LikeButton from '../../LikeButton'
 import { useState, Component, useEffect } from 'react'
 import Persons from '../../components/Persons/Person/Persons'
+import Cockpit from '../../components/Cockpit/Cockpit'
 
 //  Function component using hooks
 function App() {
@@ -47,33 +48,26 @@ function App() {
     }
 
   let persons = null;
-  let btnClass = [styles.button];
+  
 
   if (showPerson) {
     persons = (
-      <div>
         <Persons 
           persons={people} 
           clicked={deletePersonHandler} 
           changed={nameChangedHandler} />
-      </div>
     )
-    //  When we are showing the list, add the 'Red' class to the array of styles
-    btnClass.push(styles.Red)
   }
 
-  const classes = [];
-  if (people.length <= 2) {
-    classes.push(styles.red)
-  }
-  if (people.length <= 1) {
-    classes.push(styles.bold)
-  }
+
 
   return (
       <div className={styles.App}>
-        <button className={btnClass.join(' ')} onClick={() => togglePersonHandler()}>{showPerson ? 'Hide' : 'Show'}</button> 
-        <p className={classes.join(' ')}>List of people below</p>
+        <Cockpit 
+          showPerson={showPerson}
+          people={people}
+          clicked={togglePersonHandler}
+        />
         {persons}
         {/* <LikeButton /> */}
       </div>
