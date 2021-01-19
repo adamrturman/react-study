@@ -1,10 +1,7 @@
 import styles from  './App.module.css';
-// import styles from  './button.module.css';
-import Person from './Person/Person'
-import LikeButton from './LikeButton'
+import Person from '../../components/Persons/Person/Person'
+import LikeButton from '../../LikeButton'
 import { useState, Component, useEffect } from 'react'
-import { render } from 'react-dom';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 //  Function component using hooks
 function App() {
@@ -55,13 +52,14 @@ function App() {
     persons = (
       <div>
         {people.map((person, index) => {
-          return <ErrorBoundary key={person.id}><Person
+          return <Person
+            key={person.id} 
             name={person.name} 
             age={person.age}
             job={person.job}
             click={() => deletePersonHandler(index)}
             changed={(event) => nameChangedHandler(event, person.id)}
-            /></ErrorBoundary>
+            />
         })}
       </div>
     )
