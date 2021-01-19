@@ -1,80 +1,92 @@
 import styles from  './App.module.css';
 import Person from '../../components/Persons/Person/Person'
 import LikeButton from '../../LikeButton'
-import { useState, Component, useEffect } from 'react'
+import {  Component } from 'react'
 import Persons from '../../components/Persons/Person/Persons'
 import Cockpit from '../../components/Cockpit/Cockpit'
 
 //  Function component using hooks
-function App(props) {
-  const [people, setPeople] = useState([
-    { id: '1', name: "Adam", age:"32", job:"programmer" }, 
-    { id: '2', name:"Eric", age:"30", job:"entrepeneur" }, 
-    { id: '3', name:"Joey", age:"28", job:"marketing director" }])
-  
-  const [showPerson, setShowPerson] = useState(false)  
+class App extends Component {
+  constructor(props){
+    super(props);
+  }
+  state = {
+    persons: [
+      { id: '1', name: "Adam", age:"32", job:"programmer" }, 
+      { id: '2', name:"Eric", age:"30", job:"entrepeneur" }, 
+      { id: '3', name:"Joey", age:"28", job:"marketing director" }
+    ],
+    showPerson : false
+  }
 
-
-    const nameChangedHandler = (event, id) => {
+  static getDerivedStateFromProps(props, state){
+    console.log('App.js getDerivedStateFromProps', props);
+    return state;
+  }
+  componentDidMount() {
+    console.log("Component did mount")
+  }
+    
+    nameChangedHandler = (event, id) => {
         //  the personIndex is the one whose id matches the id from the event
-        const personIndex = people.findIndex(p => {
+        const personIndex = this.state.persons.findIndex(p => {
           return p.id === id;
         });
 
         //  create a new object and use the spread operator to avoid mutating original
         const person = {
-          ...people[personIndex]
+          ...this.state.persons[personIndex]
         };
 
         //  the updated name comes from the input event
         person.name = event.target.value;
 
         //  make a copy of the array and update it at the targeted index
-        const persons = [...people];
+        const persons = [...this.state.persons];
         persons[personIndex] = person;
 
         //  set the state to include the updated array
-        setPeople(persons)
+        this.setState({persons: persons})
     }
 
-    const togglePersonHandler = () => {
-        setShowPerson(!showPerson)
+    togglePersonHandler = () => {
+        this.setState({showPerson: !this.state.showPerson})
     }
 
-    const deletePersonHandler = (personIndex) => {
-      const persons = [...people];
+    deletePersonHandler = (personIndex) => {
+      const persons = [...this.state.persons];
       persons.splice(personIndex, 1);
-      setPeople(persons)
+      this.setState({persons: persons})
     }
-
+  
+  render (){
+    console.log("app.js render")
   let persons = null;
   
 
-  if (showPerson) {
+  if (this.state.showPerson) {
     persons = (
         <Persons 
-          persons={people} 
-          clicked={deletePersonHandler} 
-          changed={nameChangedHandler} />
+          persons={this.state.persons} 
+          clicked={this.deletePersonHandler} 
+          changed={this.nameChangedHandler} />
     )
   }
-
-
-
+  
   return (
       <div className={styles.App}>
-        <h1>{props.title}</h1>
         <Cockpit
-          title={props.appTitle} 
-          showPerson={showPerson}
-          people={people}
-          clicked={togglePersonHandler}
+          title={this.props.appTitle} 
+          showPerson={this.state.showPerson}
+          people={this.state.persons}
+          clicked={this.togglePersonHandler}
         />
         {persons}
         {/* <LikeButton /> */}
       </div>
     );
   }
+}
 
 
 export default App;

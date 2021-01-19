@@ -9,7 +9,7 @@ const persons = (props) => props.persons.map( (person, index) => {
           age={person.age}
           job={person.job}
           click={() => props.clicked(index)}
-          changed={(event) => props.changed(event, person.id)}
+          changed={(event) => this.props.changed(event, person.id)}
           />
     })
 
