@@ -4,7 +4,7 @@ import Person from './Person/Person'
 import LikeButton from './LikeButton'
 import { useState, Component, useEffect } from 'react'
 import { render } from 'react-dom';
-
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 //  Function component using hooks
 function App() {
@@ -55,24 +55,18 @@ function App() {
     persons = (
       <div>
         {people.map((person, index) => {
-          return <Person
-            key={person.id} 
+          return <ErrorBoundary key={person.id}><Person
             name={person.name} 
             age={person.age}
             job={person.job}
             click={() => deletePersonHandler(index)}
             changed={(event) => nameChangedHandler(event, person.id)}
-            />
+            /></ErrorBoundary>
         })}
       </div>
     )
-    //  Dynamic stylng for the button within the conditional
-  //   style.backgroundColor = 'red';
-  //   style[':hover']= {
-  //     backgroundColor: 'salmon'
-  //   }
+    //  When we are showing the list, add the 'Red' class to the array of styles
     btnClass.push(styles.Red)
-
   }
 
   const classes = [];

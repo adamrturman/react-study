@@ -6,7 +6,10 @@ import styles from './Person.module.css'
 
 const Person = (props) => {
    
-    //  Hooks syntax
+    const random = Math.random();
+    if(random > 0.7) {
+        throw new Error('Uh oh!')
+    }
     const { name, age, job, click, changed } = props
     return (
         // <div className="Person" style={style}>
