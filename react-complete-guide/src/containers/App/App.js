@@ -6,7 +6,7 @@ import Persons from '../../components/Persons/Person/Persons'
 import Cockpit from '../../components/Cockpit/Cockpit'
 
 //  Function component using hooks
-function App() {
+function App(props) {
   const [people, setPeople] = useState([
     { id: '1', name: "Adam", age:"32", job:"programmer" }, 
     { id: '2', name:"Eric", age:"30", job:"entrepeneur" }, 
@@ -63,7 +63,9 @@ function App() {
 
   return (
       <div className={styles.App}>
-        <Cockpit 
+        <h1>{props.title}</h1>
+        <Cockpit
+          title={props.appTitle} 
           showPerson={showPerson}
           people={people}
           clicked={togglePersonHandler}
