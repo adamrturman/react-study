@@ -14,7 +14,14 @@ const Cockpit = (props) => {
       classes.push(styles.bold)
     }
 
-    useEffect(()=> console.log("Cockpit useEffect"))
+    useEffect(() => {
+      console.log("Cockpit useEffect")
+      //  Faux AJAX
+      setTimeout(() => {
+        alert("Data is saved")
+      }, 1000)
+    }, [props.people])
+
     return (
         <div className={styles.Cockpit}>
             <h1>{props.title}</h1>
