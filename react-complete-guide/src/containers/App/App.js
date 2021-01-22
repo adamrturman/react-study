@@ -26,6 +26,15 @@ class App extends Component {
   componentDidMount() {
     console.log("Component did mount")
   }
+
+  shouldComponentUpdate(nextProps, nextState){
+    console.log("App.js shouldComponentUpdate")
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log("App.js componentDidUpdate")
+  }
     
     nameChangedHandler = (event, id) => {
         //  the personIndex is the one whose id matches the id from the event
