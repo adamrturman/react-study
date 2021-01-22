@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Cockpit.module.css'
 
 const Cockpit = (props) => {
@@ -13,6 +13,8 @@ const Cockpit = (props) => {
     if (props.people.length <= 1) {
       classes.push(styles.bold)
     }
+
+    useEffect(()=> console.log("Cockpit useEffect"))
     return (
         <div className={styles.Cockpit}>
             <h1>{props.title}</h1>
