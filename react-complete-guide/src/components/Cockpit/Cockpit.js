@@ -17,11 +17,10 @@ const Cockpit = (props) => {
     useEffect(() => {
       console.log("Cockpit useEffect")
       //  Faux AJAX
-      const timer = setTimeout(() => {
+      setTimeout(() => {
         alert("Data is saved")
       }, 1000)
       return () => {
-        clearTimeout(timer)
         console.log("Clean up work in useEffect")
       }
       //  the second argument in useEffect is an array of what is compared to trigger useEffect
