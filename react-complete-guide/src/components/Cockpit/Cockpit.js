@@ -20,7 +20,21 @@ const Cockpit = (props) => {
       setTimeout(() => {
         alert("Data is saved")
       }, 1000)
+      return () => {
+        console.log("Clean up work in useEffect")
+      }
+      //  the second argument in useEffect is an array of what is compared to trigger useEffect
+      //  if no second argument is passed, it will be executed everytime
+      //  if an empty array is passed in, it will only run the first time and not again - equivalent of componentDidMount()
     }, [props.people])
+
+    // No 2nd argument - will run on every update
+    useEffect(() => {
+      console.log("Cockpit 2nd useEffect")
+      return () => {
+        console.log("Second Clean up work in useEffect")
+      }
+    })
 
     return (
         <div className={styles.Cockpit}>
