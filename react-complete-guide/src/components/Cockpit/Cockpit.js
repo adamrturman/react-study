@@ -17,16 +17,17 @@ const Cockpit = (props) => {
     useEffect(() => {
       console.log("Cockpit useEffect")
       //  Faux AJAX
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         alert("Data is saved")
       }, 1000)
       return () => {
+        clearTimeout(timer)
         console.log("Clean up work in useEffect")
       }
       //  the second argument in useEffect is an array of what is compared to trigger useEffect
       //  if no second argument is passed, it will be executed everytime
-      //  if an empty array is passed in, it will only run the first time and not again - equivalent of componentDidMount()
-    }, [props.people])
+      //  if an empty array is passed in, it will only run the first time and not again until it is unmounted - equivalent of componentDidMount()
+    }, [])
 
     // No 2nd argument - will run on every update
     useEffect(() => {
